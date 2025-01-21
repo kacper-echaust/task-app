@@ -1,7 +1,7 @@
 import { Form } from '../Form/Form'
 import { TaskList } from '../TaskList/TaskList'
 import css from './TaskApp.module.scss'
-import { TaskContextProvider } from '../../Context/TaskContext'
+import { TaskContextProvider } from '../../../Context/TaskContext'
 
 const TaskApp = () => {
 	return (
