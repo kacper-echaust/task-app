@@ -30,14 +30,16 @@ const TaskList = () => {
 	}
 	return (
 		<div className={css.listContainer}>
-			<div className={css.sortSelectContainer}>
-				<select className={css.sortSelect} name='sort' id='sort' onChange={handleSort}>
-					<option value=''>Sort by</option>
-					<option value='old date'>old date</option>
-					<option value='newest date'>newest date</option>
-				</select>
-				<Arrow className={css.arrow} />
-			</div>
+			{taskList.length !== 0 && (
+				<div className={css.sortSelectContainer}>
+					<select className={css.sortSelect} name='sort' id='sort' onChange={handleSort}>
+						<option value=''>Sort by</option>
+						<option value='old date'>old date</option>
+						<option value='newest date'>newest date</option>
+					</select>
+					<Arrow className={css.arrow} />
+				</div>
+			)}
 			<ul>
 				{taskList.map(task => {
 					const { id, isEditing, completed, text, year, month, day, hour, minute, error } = task
