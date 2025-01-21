@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { useTaskApp } from '../../../hooks/useTaskApp'
 import css from './TaskList.module.scss'
 import { TaskContext } from '../../../Context/TaskContext'
+import { Arrow } from '../Icons/Arrow'
 
 const TaskList = () => {
-	const { checkComplete, deleteTask, renameTask } = useTaskApp()
+	const { checkComplete, deleteTask, renameTask, sortTask } = useTaskApp()
 	const { taskList, setTaskList } = useContext(TaskContext)
 	const [value, setValue] = useState('')
 
@@ -23,12 +24,23 @@ const TaskList = () => {
 			renameTask(id, value)
 		}
 	}
+	const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
+		e.target.blur()
+		sortTask(e.target.value)
+	}
 	return (
 		<div className={css.listContainer}>
+			<div className={css.sortSelectContainer}>
+				<select className={css.sortSelect} name='sort' id='sort' onChange={handleSort}>
+					<option value=''>Sort by</option>
+					<option value='old date'>old date</option>
+					<option value='newest date'>newest date</option>
+				</select>
+				<Arrow className={css.arrow} />
+			</div>
 			<ul>
 				{taskList.map(task => {
-					const { id, isEditing, completed, text, year, month, day, hours, minutes,error } = task
-					console.log(error)
+					const { id, isEditing, completed, text, year, month, day, hour, minute, error } = task
 					return (
 						<li key={id}>
 							{isEditing ? (
@@ -51,7 +63,7 @@ const TaskList = () => {
 								</span>
 							)}
 							<div>
-								<span className={css.date}>{`${year}-${month}-${day} ${hours}:${minutes}`}</span>
+								<span className={css.date}>{`${year}-${month}-${day} ${hour}:${minute}`}</span>
 								<input
 									type='checkbox'
 									checked={completed ? true : false}

@@ -26,11 +26,11 @@ const useTaskApp = () => {
 		const year = date.getFullYear()
 		const month = date.getMonth() + 1
 		const day = date.getDate()
-		const hours = date.getHours()
-		const minutes = date.getMinutes()
+		const hour = date.getHours()
+		const minute = date.getMinutes()
 		const newTask = [
 			...taskList,
-			{ text: task, completed: false, id: unicalId, isEditing: false, year, month, day, hours, minutes },
+			{ text: task, completed: false, id: unicalId, isEditing: false, year, month, day, hour, minute },
 		]
 		setTaskList(newTask)
 		setTask('')
@@ -67,12 +67,30 @@ const useTaskApp = () => {
 		setTaskList(updateTaskList)
 		localStorage.setItem('taskList', JSON.stringify(updateTaskList))
 	}
+	const sortTask = (sortBy: string) => {
+		const sortedData = [...taskList]
+		if (sortBy === 'old date') {
+			sortedData.sort((a, b) => {
+				const dateA = Number(new Date(a.year, a.month - 1, a.day, a.hour, a.minute))
+				const dateB = Number(new Date(b.year, b.month - 1, b.day, b.hour, b.minute))
+				return dateB - dateA
+			})
+		} else if (sortBy === 'newest date') {
+			sortedData.sort((a, b) => {
+				const dateA = Number(new Date(a.year, a.month - 1, a.day, a.hour, a.minute))
+				const dateB = Number(new Date(b.year, b.month - 1, b.day, b.hour, b.minute))
+				return dateA - dateB
+			})
+		}
+		setTaskList(sortedData)
+	}
 	return {
 		addTask,
 		getTask,
 		checkComplete,
 		deleteTask,
 		renameTask,
+		sortTask,
 		task,
 		error,
 	}

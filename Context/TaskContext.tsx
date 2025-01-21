@@ -8,8 +8,8 @@ type taskListType = {
 	year: number
 	month: number
 	day: number
-	hours: number
-	minutes: number
+	hour: number
+	minute: number
 	error?:string
 }
 type TaskContextType = {
