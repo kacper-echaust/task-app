@@ -1,10 +1,8 @@
-import { useTaskApp } from '../TaskApp/useTaskApp'
+import { useTaskApp } from '../../../hooks/useTaskApp'
 import css from './Form.module.scss'
 
-
-
 const Form = () => {
-	const { addTask, getTask, task,error } = useTaskApp()
+	const { addTask, getTask, task, error } = useTaskApp()
 
 	return (
 		<div className={css.formContainer}>

@@ -1,10 +1,16 @@
 import { createContext, ReactNode, useState } from 'react'
 
 type taskListType = {
-	text: string
+	text: string | null
 	completed: boolean
 	id: string
 	isEditing: boolean
+	year: number
+	month: number
+	day: number
+	hours: number
+	minutes: number
+	error?:string
 }
 type TaskContextType = {
 	taskList: taskListType[]
