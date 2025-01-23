@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from 'react'
-import { useTaskApp } from '../../../hooks/useTaskApp'
+import { useTaskApp } from '../../hooks/useTaskApp'
 import css from './TaskList.module.scss'
-import { TaskContext } from '../../../Context/TaskContext'
+import { TaskContext } from '../../Context/TaskContext'
 import { Arrow } from '../Icons/Arrow'
 
 const TaskList = () => {
