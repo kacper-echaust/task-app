@@ -1,4 +1,4 @@
-import { useTaskApp } from '../../../hooks/useTaskApp'
+import { useTaskApp } from '../../hooks/useTaskApp'
 import css from './Form.module.scss'
 
 const Form = () => {
